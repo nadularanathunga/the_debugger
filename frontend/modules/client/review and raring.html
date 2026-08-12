@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review & Rating - Skill Market</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans p-6">
+
+    <div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-md border-t-4 border-yellow-400 mt-10">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-3xl font-extrabold text-gray-800">Leave a Review</h2>
+            <a href="clientdashboard.html" class="text-blue-600 font-semibold hover:underline">Back</a>
+        </div>
+        <p class="text-gray-500 mb-6">Rate the student's work and leave feedback to help others in the community.</p>
+
+        <form id="reviewForm" class="space-y-5">
+            <!-- In a real app, Task ID and Reviewee ID would be passed via URL parameters -->
+            <input type="hidden" id="task_id" value="1"> 
+            <input type="hidden" id="reviewee_id" value="2"> 
+
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Rating (1 to 5 Stars)</label>
+                <select id="rating" class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white outline-none focus:ring-2 focus:ring-yellow-400" required>
+                    <option value="5">⭐⭐⭐⭐⭐ - Excellent</option>
+                    <option value="4">⭐⭐⭐⭐ - Good</option>
+                    <option value="3">⭐⭐⭐ - Average</option>
+                    <option value="2">⭐⭐ - Poor</option>
+                    <option value="1">⭐ - Terrible</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Your Comment</label>
+                <textarea id="comment" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 outline-none" placeholder="How was your experience?" required></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-yellow-400 text-gray-900 font-bold py-3 rounded-lg hover:bg-yellow-500 transition duration-300 shadow-md">
+                Submit Review
+            </button>
+        </form>
+        <div id="message" class="mt-4 text-center text-sm font-semibold hidden"></div>
+    </div>
+
+    <script>
+        document.getElementById('reviewForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const reviewerId = localStorage.getItem('user_id');
+
+            const payload = {
+                action: 'submit_review',
+                reviewer_id: reviewerId,
+                task_id: document.getElementById('task_id').value,
+                reviewee_id: document.getElementById('reviewee_id').value,
+                rating: document.getElementById('rating').value,
+                comment: document.getElementById('comment').value
+            };
+
+            try {
+                const response = await fetch('../../../backend/api/local/client_api.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await response.json();
+                
+                const messageEl = document.getElementById('message');
+                messageEl.classList.remove('hidden');
+                
+                if (data.status === 'success') {
+                    messageEl.className = 'mt-4 text-center text-sm font-semibold text-green-600';
+                    messageEl.innerText = 'Review submitted successfully!';
+                    setTimeout(() => window.location.href = 'clientdashboard.html', 1500);
+                } else {
+                    messageEl.className = 'mt-4 text-center text-sm font-semibold text-red-600';
+                    messageEl.innerText = data.message;
+                }
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        });
+    </script>
+</body>
+</html>

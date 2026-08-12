@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard - Skill Market</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <nav class="bg-green-600 text-white p-4 shadow-md">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Client Dashboard</h1>
+            <div class="space-x-4">
+                <a href="createOpportunity.html" class="bg-white text-green-600 px-4 py-2 rounded-lg font-bold hover:bg-gray-100 transition">+ Post New Task</a>
+                <a href="#" onclick="logout()" class="hover:text-green-200">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto mt-10 p-4">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-green-500">
+                <h3 class="text-lg font-semibold text-gray-500">Total Tasks Posted</h3>
+                <p class="text-4xl font-bold text-gray-800 mt-2" id="total_tasks">0</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-blue-500">
+                <h3 class="text-lg font-semibold text-gray-500">Wallet Balance</h3>
+                <p class="text-4xl font-bold text-gray-800 mt-2" id="wallet_balance">Rs. 0.00</p>
+            </div>
+        </div>
+
+        <h2 class="text-2xl font-extrabold text-gray-800 mb-6">Your Posted Tasks</h2>
+        
+        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-gray-50 text-gray-700 border-b">
+                        <th class="p-4 font-semibold">Task Title</th>
+                        <th class="p-4 font-semibold">Budget</th>
+                        <th class="p-4 font-semibold">Status</th>
+                        <th class="p-4 font-semibold">Date Posted</th>
+                        <th class="p-4 font-semibold">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="my_tasks_list" class="divide-y divide-gray-200">
+                    <!-- Tasks will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const userId = localStorage.getItem('user_id');
+        if (!userId) {
+            window.location.href = '../auth/login.html';
+        }
+
+        async function loadClientDashboard() {
+            try {
+                const response = await fetch('../../../backend/api/local/client_api.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'get_client_dashboard', client_id: userId })
+                });
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    document.getElementById('wallet_balance').innerText = `Rs. ${data.wallet_balance}`;
+                    document.getElementById('total_tasks').innerText = data.tasks.length;
+
+                    const list = document.getElementById('my_tasks_list');
+                    if(data.tasks.length > 0) {
+                        list.innerHTML = data.tasks.map(t => {
+                            let statusColor = t.status === 'open' ? 'bg-green-100 text-green-800' : 
+                                              t.status === 'taken' ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-800';
+                            
+                            return `
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="p-4 font-semibold text-gray-800">${t.title}</td>
+                                <td class="p-4 text-gray-600">Rs. ${t.budget}</td>
+                                <td class="p-4"><span class="px-2 py-1 rounded text-xs font-bold ${statusColor}">${t.status.toUpperCase()}</span></td>
+                                <td class="p-4 text-gray-500 text-sm">${t.created_at}</td>
+                                <td class="p-4">
+                                    <button class="text-blue-600 hover:underline font-semibold text-sm">View Details</button>
+                                </td>
+                            </tr>
+                        `}).join('');
+                    } else {
+                        list.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-gray-500">You haven't posted any tasks yet.</td></tr>`;
+                    }
+                }
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
+
+        function logout() {
+            localStorage.clear();
+            window.location.href = '../auth/login.html';
+        }
+
+        loadClientDashboard();
+    </script>
+</body>
+</html>
