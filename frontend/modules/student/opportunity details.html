@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opportunity Details - Skill Market</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <nav class="bg-blue-600 text-white p-4 shadow-md">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Task Details</h1>
+            <a href="opportunity marketplace.html" class="hover:text-blue-200">Back to Marketplace</a>
+        </div>
+    </nav>
+
+    <div class="max-w-4xl mx-auto mt-10 p-4">
+        <div class="bg-white p-8 rounded-xl shadow-md border-t-4 border-blue-500">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <span class="bg-blue-100 text-blue-800 text-sm font-bold px-3 py-1 rounded" id="dept_badge">Loading...</span>
+                    <h2 class="text-3xl font-extrabold text-gray-800 mt-4" id="task_title">Loading Task...</h2>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm text-gray-500 uppercase font-bold tracking-wide">Budget</p>
+                    <p class="text-3xl font-bold text-green-600" id="task_budget">Rs. 0.00</p>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h3 class="text-lg font-bold text-gray-800 mb-2">Description</h3>
+                <p class="text-gray-600 leading-relaxed" id="task_desc">Please wait while we load the details...</p>
+            </div>
+
+            <button onclick="acceptTask()" class="w-full bg-blue-600 text-white font-bold py-4 rounded-lg hover:bg-blue-700 transition shadow-lg text-lg">
+                I Want to Do This Task
+            </button>
+            <div id="message" class="mt-4 text-center text-sm font-semibold hidden"></div>
+        </div>
+    </div>
+
+    <script>
+        // For demonstration, assuming task ID is 1. In reality, get from URL parameters ?id=1
+        const taskId = 1; 
+
+        async function acceptTask() {
+            const userId = localStorage.getItem('user_id');
+            const messageEl = document.getElementById('message');
+            
+            try {
+                const response = await fetch('../../../backend/api/student/student_api.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'accept_task', task_id: taskId, student_id: userId })
+                });
+                const data = await response.json();
+                
+                messageEl.classList.remove('hidden');
+                if (data.status === 'success') {
+                    messageEl.className = 'mt-4 text-center text-lg font-semibold text-green-600';
+                    messageEl.innerText = 'Task Accepted Successfully!';
+                    setTimeout(() => window.location.href = 'task managemnet.peg.html', 1500);
+                } else {
+                    messageEl.className = 'mt-4 text-center text-lg font-semibold text-red-600';
+                    messageEl.innerText = data.message;
+                }
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
+    </script>
+</body>
+</html>

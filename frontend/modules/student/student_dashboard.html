@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Skill Market</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <!-- Navigation -->
+    <nav class="bg-blue-600 text-white p-4 shadow-md">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Skill Market</h1>
+            <div class="space-x-4">
+                <a href="opportunity_marketplace.html" class="hover:text-blue-200">Marketplace</a>
+                <a href="myskill.html" class="hover:text-blue-200">My Skills</a>
+                <a href="#" onclick="logout()" class="hover:text-red-300">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-6xl mx-auto mt-10 p-4">
+        <div class="mb-8">
+            <h2 class="text-3xl font-extrabold text-gray-800" id="welcome_message">Welcome, Student!</h2>
+            <p class="text-gray-600">Here is your current overview.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Wallet Card -->
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-green-500">
+                <h3 class="text-lg font-semibold text-gray-500">Wallet Balance</h3>
+                <p class="text-4xl font-bold text-gray-800 mt-2" id="wallet_balance">Rs. 0.00</p>
+                <button class="mt-4 bg-green-100 text-green-700 px-4 py-2 rounded-lg font-semibold hover:bg-green-200 transition">View History</button>
+            </div>
+
+            <!-- Active Tasks Card -->
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-blue-500">
+                <h3 class="text-lg font-semibold text-gray-500">Active Tasks Taken</h3>
+                <p class="text-4xl font-bold text-gray-800 mt-2" id="active_tasks">0</p>
+                <button class="mt-4 bg-blue-100 text-blue-700 px-4 py-2 rounded-lg font-semibold hover:bg-blue-200 transition">Manage Tasks</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check if user is logged in
+        const userId = localStorage.getItem('user_id');
+        if (!userId) {
+            window.location.href = '../auth/login.html';
+        }
+
+        async function loadDashboard() {
+            try {
+                const response = await fetch('../../../backend/api/student/student_api.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'get_dashboard', user_id: userId })
+                });
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    document.getElementById('welcome_message').innerText = `Welcome, ${data.full_name}!`;
+                    document.getElementById('wallet_balance').innerText = `Rs. ${data.wallet_balance}`;
+                    document.getElementById('active_tasks').innerText = data.active_tasks_count;
+                }
+            } catch (error) {
+                console.error("Error loading dashboard:", error);
+            }
+        }
+
+        function logout() {
+            localStorage.clear();
+            window.location.href = '../auth/login.html';
+        }
+
+        loadDashboard();
+    </script>
+</body>
+</html>

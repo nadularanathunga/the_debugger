@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opportunity Marketplace - Skill Market</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <nav class="bg-blue-600 text-white p-4 shadow-md">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Opportunity Marketplace</h1>
+            <a href="student_dashboard.html" class="hover:text-blue-200">Back to Dashboard</a>
+        </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto mt-10 p-4">
+        <h2 class="text-3xl font-extrabold text-gray-800 mb-6">Available Tasks</h2>
+        
+        <!-- Tasks Grid -->
+        <div id="tasks_container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Tasks will be loaded here dynamically -->
+        </div>
+    </div>
+
+    <script>
+        async function loadTasks() {
+            const container = document.getElementById('tasks_container');
+            
+            try {
+                const response = await fetch('../../../backend/api/student/student_api.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'get_open_tasks' })
+                });
+                const data = await response.json();
+                
+                if (data.status === 'success' && data.tasks.length > 0) {
+                    container.innerHTML = data.tasks.map(task => `
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:shadow-lg transition">
+                            <div class="flex justify-between items-start mb-4">
+                                <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-1 rounded">Dept: ${task.required_dept}</span>
+                                <span class="text-green-600 font-bold">Rs. ${task.budget}</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">${task.title}</h3>
+                            <p class="text-gray-600 text-sm mb-6 line-clamp-3">${task.description}</p>
+                            <button onclick="takeTask(${task.task_id})" class="w-full bg-blue-600 text-white font-bold py-2 rounded-lg hover:bg-blue-700 transition">
+                                Apply / Take Task
+                            </button>
+                        </div>
+                    `).join('');
+                } else {
+                    container.innerHTML = `<p class="text-gray-500 col-span-3">No open tasks available right now.</p>`;
+                }
+            } catch (error) {
+                console.error("Error loading tasks:", error);
+                container.innerHTML = `<p class="text-red-500">Error loading marketplace.</p>`;
+            }
+        }
+
+        function takeTask(taskId) {
+            alert("This will open the Task Details page for Task ID: " + taskId);
+            // Here you would redirect to opportunity_details.html?id=taskId
+        }
+
+        loadTasks();
+    </script>
+</body>
+</html>
