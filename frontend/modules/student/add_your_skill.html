@@ -53,7 +53,7 @@
             const userId = localStorage.getItem('user_id');
             
             const payload = {
-                action: 'add_skill',
+                action: 'create',
                 student_id: userId,
                 skill_name: document.getElementById('skill_name').value,
                 category: document.getElementById('category').value,
@@ -62,7 +62,7 @@
             };
 
             try {
-                const response = await fetch('../../../backend/api/student/student_api.php', {
+                const response = await fetch('../../../backend/api/skills_api.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
@@ -78,7 +78,7 @@
                     setTimeout(() => window.location.href = 'myskill.html', 1500);
                 } else {
                     messageEl.className = 'mt-4 text-center text-sm font-semibold text-red-600';
-                    messageEl.innerText = data.message;
+                    messageEl.innerText = data.message || 'Error occurred';
                 }
             } catch (error) {
                 console.error("Error:", error);

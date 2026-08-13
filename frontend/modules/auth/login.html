@@ -1,103 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skill Market - Login</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login - Skill Bridge</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"primary-container": "#131b2e", "on-secondary-fixed": "#001a42", "on-secondary-container": "#fefcff", error: "#ba1a1a", "surface-container-high": "#eae7e9", "error-container": "#ffdad6", tertiary: "#000000", primary: "#000000", "tertiary-fixed-dim": "#dec29a", "inverse-on-surface": "#f3f0f2", "secondary-fixed": "#d8e2ff", surface: "#fcf8fa", "on-secondary": "#ffffff", "surface-tint": "#565e74", "on-background": "#1b1b1d", secondary: "#0058be", "surface-bright": "#fcf8fa", "on-tertiary-fixed": "#271901", background: "#fcf8fa", outline: "#76777d", "on-primary-fixed-variant": "#3f465c", "surface-variant": "#e4e2e4", "secondary-container": "#2170e4", "surface-container-low": "#f6f3f5", "on-secondary-fixed-variant": "#004395", "inverse-primary": "#bec6e0", "surface-container": "#f0edef", "primary-fixed-dim": "#bec6e0", "on-error": "#ffffff", "tertiary-fixed": "#fcdeb5", "inverse-surface": "#303032", "on-error-container": "#93000a", "surface-dim": "#dcd9db", "on-primary-fixed": "#131b2e", "on-primary": "#ffffff", "surface-container-lowest": "#ffffff", "surface-container-highest": "#e4e2e4", "primary-fixed": "#dae2fd", "on-tertiary-fixed-variant": "#574425", "secondary-fixed-dim": "#adc6ff", "on-primary-container": "#7c839b", "on-surface": "#1b1b1d", "on-tertiary-container": "#98805d", "tertiary-container": "#271901", "outline-variant": "#c6c6cd", "on-tertiary": "#ffffff", "on-surface-variant": "#45464d"}, borderRadius: {DEFAULT: "1rem", lg: "2rem", xl: "3rem", full: "9999px"}, spacing: {"stack-md": "16px", unit: "8px", "container-max": "1280px", "stack-xl": "48px", "stack-xs": "4px", "stack-lg": "24px", "margin-desktop": "40px", "stack-sm": "8px", gutter: "24px", "margin-mobile": "16px"}, fontFamily: {"body-sm": ["Inter"], "headline-md": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "label-md": ["Inter"], "body-lg": ["Inter"], "body-md": ["Inter"], "headline-sm": ["Plus Jakarta Sans"], "title-lg": ["Inter"], "display-lg-mobile": ["Plus Jakarta Sans"], headline: ["Plus Jakarta Sans"], display: ["Plus Jakarta Sans"], body: ["Inter"], label: ["Inter"]}, fontSize: {"body-sm": ["14px", {lineHeight: "20px", fontWeight: "400"}], "headline-md": ["30px", {lineHeight: "1.2", letterSpacing: "-0.01em", fontWeight: "700"}], "display-lg": ["48px", {lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "800"}], "label-md": ["12px", {lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}], "headline-sm": ["24px", {lineHeight: "1.3", fontWeight: "600"}], "title-lg": ["20px", {lineHeight: "28px", fontWeight: "600"}], "display-lg-mobile": ["32px", {lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "800"}]}}}};</script>
 </head>
-<body class="bg-slate-900 flex items-center justify-center min-h-screen font-sans">
-    
-    <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md">
-        <div class="text-center mb-8">
-            <h2 class="text-3xl font-extrabold text-gray-800">Skill Market</h2>
-            <p class="text-gray-500 mt-2">Welcome back! Please login to your account.</p>
-        </div>
+<body class="bg-surface h-full flex flex-col items-center justify-center font-body-md text-on-surface antialiased selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Suppressed Top Nav as this is a transactional page -->
+<main class="w-full max-w-md px-margin-mobile sm:px-margin-desktop py-stack-xl flex-grow flex flex-col justify-center">
+<!-- Brand / Header -->
+<div class="text-center mb-stack-lg">
+<h1 class="font-display-lg text-display-lg hidden sm:block text-primary mb-stack-sm">Skill Bridge</h1>
+<h1 class="font-display-lg-mobile text-display-lg-mobile sm:hidden text-primary mb-stack-sm">Skill Bridge</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Welcome back. Please enter your details.</p>
+</div>
+<!-- Login Card -->
+<div class="bg-surface-container-lowest rounded-[16px] border border-surface-container-high shadow-[0px_4px_20px_rgba(15,23,42,0.05)] p-stack-lg sm:p-[32px] transition-shadow duration-300 hover:shadow-[0px_8px_30px_rgba(15,23,42,0.08)]">
+<form id="login-form" class="space-y-stack-md">
+<!-- Email Field -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-stack-xs uppercase tracking-wider" for="email">Email</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline-variant text-[20px]">mail</span>
+</div>
+<input class="block w-full pl-10 h-[48px] rounded-lg border-0 py-1.5 text-on-surface bg-[#F1F5F9] shadow-sm ring-1 ring-inset ring-surface-container-high focus:ring-2 focus:ring-inset focus:ring-secondary-container sm:text-sm sm:leading-6 transition-all duration-200" id="email" name="email" placeholder="student@stu.ac.lk" required="" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-stack-xs uppercase tracking-wider" for="password">Password</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline-variant text-[20px]">lock</span>
+</div>
+<input class="block w-full pl-10 h-[48px] rounded-lg border-0 py-1.5 text-on-surface bg-[#F1F5F9] shadow-sm ring-1 ring-inset ring-surface-container-high focus:ring-2 focus:ring-inset focus:ring-secondary-container sm:text-sm sm:leading-6 transition-all duration-200" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+<!-- Utilities -->
+<div class="flex items-center justify-between mt-stack-sm">
+<div class="flex items-center">
+<input class="h-4 w-4 rounded border-surface-container-high text-secondary-container focus:ring-secondary-container bg-[#F1F5F9]" id="remember-me" name="remember-me" type="checkbox"/>
+<label class="ml-2 block font-body-sm text-body-sm text-on-surface-variant" for="remember-me">Remember me</label>
+</div>
+<div class="text-sm">
+<a class="font-body-sm text-body-sm font-medium text-secondary-container hover:text-on-secondary-fixed-variant transition-colors duration-200" href="#">Forgot password?</a>
+</div>
+</div>
+<!-- Submit Button -->
+<div class="pt-stack-xs">
+<button class="flex w-full justify-center items-center h-[48px] rounded-xl bg-primary-container px-3 py-1.5 font-label-md text-label-md text-on-primary shadow-sm hover:bg-on-secondary-fixed focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-container transition-colors duration-200" type="submit">
+                        Login
+                    </button>
+</div>
+</form>
+<div class="mt-stack-lg">
+<div class="relative">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-surface-container-high"></div>
+</div>
+<div class="relative flex justify-center">
+<span class="bg-surface-container-lowest px-2 font-body-sm text-body-sm text-outline">Or continue with</span>
+</div>
+</div>
+<!-- University SSO Button -->
+<div class="mt-stack-md">
+<a class="flex w-full items-center justify-center gap-3 h-[48px] rounded-xl bg-surface px-3 py-1.5 text-on-surface shadow-sm ring-1 ring-inset ring-surface-container-high hover:bg-surface-container-low transition-colors duration-200 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px] text-secondary">school</span>
+<span class="font-medium">Login with University ID</span>
+</a>
+</div>
+</div>
+<!-- Sign Up Link -->
+<p class="mt-stack-lg text-center font-body-sm text-body-sm text-on-surface-variant">
+                Don't have an account?
+                <a class="font-medium text-secondary-container hover:text-on-secondary-fixed-variant transition-colors duration-200" href="signup.html">Sign Up</a>
+</p>
+</div>
+</main>
+<!-- Suppressed Footer as this is a transactional page -->
+<script>
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
 
-        <form id="loginForm" class="space-y-5">
-            <!-- Email Input -->
-            <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-1">Email Address</label>
-                <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="Enter your email" required>
-            </div>
-
-            <!-- Password Input -->
-            <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-1">Password</label>
-                <input type="password" id="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="Enter your password" required>
-            </div>
-
-            <!-- Role Selection -->
-            <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-1">Login As</label>
-                <select id="role" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-white" required>
-                    <option value="student">Student</option>
-                    <option value="client">Client</option>
-                    <option value="lecturer">Lecturer</option>
-                    <option value="admin">Admin</option>
-                </select>
-            </div>
-
-            <!-- Submit Button -->
-            <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition duration-300 shadow-md">
-                Login
-            </button>
-        </form>
-
-        <!-- Response Message -->
-        <div id="message" class="mt-4 text-center text-sm font-semibold hidden"></div>
-        
-        <div class="mt-6 text-center text-sm text-gray-600">
-            Don't have an account? <a href="signup.html" class="text-blue-600 hover:underline font-semibold">Sign up</a>
-        </div>
-    </div>
-
-    <!-- Frontend Logic (JavaScript) -->
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', async (e) => {
-            e.preventDefault(); // Prevent page reload
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const role = document.getElementById('role').value;
-            const messageEl = document.getElementById('message');
-
-            messageEl.classList.add('hidden'); // Reset message
-
-            try {
-                // API Call to Backend
-                const response = await fetch('../../../backend/api/auth_api.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ action: 'login', email, password, role })
-                });
-                
-                const data = await response.json();
-                
-                messageEl.classList.remove('hidden');
-                if (data.status === 'success') {
-                    messageEl.className = 'mt-4 text-center text-sm font-semibold text-green-600';
-                    messageEl.innerText = 'Login Successful! Redirecting...';
-                    
-                    // Store user data in localStorage (Optional but useful)
-                    localStorage.setItem('user_id', data.user_id);
-                    
-                    // Redirect to corresponding dashboard
-                    setTimeout(() => {
-                        window.location.href = `../${role}/${role}_dashboard.html`;
-                    }, 1500);
-                } else {
-                    messageEl.className = 'mt-4 text-center text-sm font-semibold text-red-600';
-                    messageEl.innerText = data.message;
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                messageEl.classList.remove('hidden');
-                messageEl.className = 'mt-4 text-center text-sm font-semibold text-red-600';
-                messageEl.innerText = 'Server error occurred.';
+        try {
+            const res = await fetch('../../../backend/api/auth_api.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'login', email, password })
+            });
+            const data = await res.json();
+            if (data.status === 'success') {
+                localStorage.setItem('user_id', data.user_id);
+                localStorage.setItem('full_name', data.full_name);
+                localStorage.setItem('role', data.role);
+                alert('Login successful!');
+                // Redirect based on role
+                if (data.role === 'student') window.location.href = '../student/student_dashboard.html';
+                else if (data.role === 'client') window.location.href = '../client/dashboard.html';
+                else if (data.role === 'admin') window.location.href = '../admin/dashboard.html';
+            } else {
+                alert('Error: ' + data.message);
             }
-        });
-    </script>
-</body>
-</html>
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred during login.');
+        }
+    });
+</script>
+</body></html>

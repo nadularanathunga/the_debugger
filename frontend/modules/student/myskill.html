@@ -32,15 +32,11 @@
             const container = document.getElementById('skills_container');
             
             try {
-                const response = await fetch('../../../backend/api/student/student_api.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ action: 'get_my_skills', student_id: userId })
-                });
+                const response = await fetch(`../../../backend/api/skills_api.php?action=list&student_id=${userId}`);
                 const data = await response.json();
                 
-                if (data.status === 'success' && data.skills.length > 0) {
-                    container.innerHTML = data.skills.map(skill => `
+                if (data.status === 'success' && data.data.length > 0) {
+                    container.innerHTML = data.data.map(skill => `
                         <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
                             <span class="bg-purple-100 text-purple-800 text-xs font-bold px-2 py-1 rounded">${skill.category}</span>
                             <h3 class="text-xl font-bold text-gray-800 mt-3">${skill.skill_name}</h3>

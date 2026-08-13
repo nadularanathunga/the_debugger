@@ -92,15 +92,13 @@ if ($action === 'signup') {
 if ($action === 'login') {
     $email = isset($data['email']) ? trim($data['email']) : '';
     $password = isset($data['password']) ? $data['password'] : '';
-    $role = isset($data['role']) ? trim($data['role']) : '';
-
-    if ($email === '' || $password === '' || $role === '') {
+    if ($email === '' || $password === '') {
         json_response(['status' => 'error', 'message' => 'All fields are required'], 400);
     }
 
     try {
-        $stmt = $conn->prepare("SELECT user_id, full_name, password FROM users WHERE email = ? AND role = ? LIMIT 1");
-        $stmt->bind_param('ss', $email, $role);
+        $stmt = $conn->prepare("SELECT user_id, full_name, password, role FROM users WHERE email = ? LIMIT 1");
+        $stmt->bind_param('s', $email);
         $stmt->execute();
         $res = $stmt->get_result();
         if ($res && $res->num_rows > 0) {
@@ -121,7 +119,8 @@ if ($action === 'login') {
                     'status' => 'success',
                     'message' => 'Login successful',
                     'user_id' => $user['user_id'],
-                    'full_name' => $user['full_name']
+                    'full_name' => $user['full_name'],
+                    'role' => $user['role']
                 ]);
             } else {
                 json_response(['status' => 'error', 'message' => 'Invalid credentials'], 401);

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create an Opportunity - Skill Bridge</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#565e74",
+                        "surface-variant": "#e4e2e4",
+                        "tertiary-fixed-dim": "#dec29a",
+                        "on-secondary-container": "#fefcff",
+                        "surface-dim": "#dcd9db",
+                        "background": "#fcf8fa",
+                        "primary-fixed": "#dae2fd",
+                        "on-tertiary-fixed": "#271901",
+                        "on-tertiary-fixed-variant": "#574425",
+                        "on-tertiary-container": "#98805d",
+                        "error": "#ba1a1a",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#303032",
+                        "surface-bright": "#fcf8fa",
+                        "primary-fixed-dim": "#bec6e0",
+                        "on-primary": "#ffffff",
+                        "on-background": "#1b1b1d",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#001a42",
+                        "tertiary-fixed": "#fcdeb5",
+                        "on-surface": "#1b1b1d",
+                        "secondary-container": "#2170e4",
+                        "secondary": "#0058be",
+                        "primary": "#000000",
+                        "outline-variant": "#c6c6cd",
+                        "surface-container": "#f0edef",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#7c839b",
+                        "surface": "#fcf8fa",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#bec6e0",
+                        "tertiary": "#000000",
+                        "primary-container": "#131b2e",
+                        "surface-container-low": "#f6f3f5",
+                        "tertiary-container": "#271901",
+                        "surface-container-highest": "#e4e2e4",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "inverse-on-surface": "#f3f0f2",
+                        "outline": "#76777d",
+                        "surface-container-high": "#eae7e9",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "on-surface-variant": "#45464d",
+                        "on-primary-fixed": "#131b2e",
+                        "on-secondary-fixed-variant": "#004395",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#d8e2ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-xs": "4px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px",
+                        "unit": "8px",
+                        "container-max": "1280px",
+                        "stack-lg": "24px",
+                        "gutter": "24px",
+                        "stack-xl": "48px",
+                        "margin-desktop": "40px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "title-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["30px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "title-lg": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Custom scrollbar for chips container */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .preview-sticky {
+            position: sticky;
+            top: 100px; /* Adjust based on topnav height + spacing */
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar (Shared Component) -->
+<header class="bg-surface/80 dark:bg-surface-container-lowest/80 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-surface-variant dark:border-outline-variant flat no shadows">
+<div class="flex justify-between items-center h-16 px-margin-desktop max-w-container-max mx-auto">
+<!-- Brand -->
+<a class="font-headline-sm text-headline-sm font-bold text-on-primary-fixed dark:text-primary-fixed flex items-center gap-2" href="wallet.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">architecture</span>
+                Skill Bridge
+            </a>
+<!-- Navigation Links (Desktop) -->
+<nav class="hidden md:flex items-center gap-stack-lg">
+<a class="text-on-surface-variant dark:text-on-surface-variant font-medium hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-200 active:scale-95 transition-transform" href="#">Home</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-medium hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-200 active:scale-95 transition-transform" href="#">Discover</a>
+<a class="text-primary dark:text-primary-fixed-dim font-bold border-b-2 border-secondary pb-1 active:scale-95 transition-transform" href="opportunity_marketplace.html">Opportunities</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-medium hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-200 active:scale-95 transition-transform" href="#">Marketplace</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-medium hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-200 active:scale-95 transition-transform" href="#">Messages</a>
+</nav>
+<!-- Actions & Profile -->
+<div class="flex items-center gap-stack-md">
+<button class="hidden md:flex items-center justify-center h-10 px-stack-md bg-secondary text-on-secondary rounded-lg font-label-md hover:bg-secondary-container hover:text-on-secondary-container transition-colors shadow-sm">
+                    Post a Request
+                </button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant cursor-pointer">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A professional headshot of a young university student in a bright, modern setting. The student is smiling warmly, wearing smart casual attire. The background is a soft, out-of-focus tech hub environment. High quality, clear lighting, emphasizing a trustworthy and capable persona." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSEuQ9MflASYeInhc9QguB2CRLab6jOtGrJq_5MUWMUHGQ5PA5CwIBHOn8qZmUUvyTGzUd8gfR8SHrJcu5msu6V4ydJkXZPKjOv9PI4MwloS3bY5lHN6SYKFq3DpFB98RCCdQwjwN3Um08tNx92DCQM3RaaC6ZlfaL3DzmQMCnkH76-EjPmfXhEKkR2Gqbk_lpv9FMxjbA0OhYvDqyWGkDsMXDCO87B7hDUj11m5QDgcT_I-1U3TVt4w"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-[104px] pb-stack-xl px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
+<!-- Header Section -->
+<div class="mb-stack-xl">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-stack-xs tracking-tight">Create an Opportunity</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Tell students what you need help with.</p>
+</div>
+<!-- Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- LEFT COLUMN: Form -->
+<div class="lg:col-span-7 space-y-stack-lg bg-surface-container-lowest p-stack-lg rounded-[2rem] border border-surface-variant">
+<!-- Task Title -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-stack-xs" for="title">Task Title <span class="text-error">*</span></label>
+<input class="w-full h-12 px-stack-md bg-surface-container-low border border-surface-variant rounded-DEFAULT focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all font-body-md placeholder:text-outline outline-none" id="title" oninput="updatePreview('preview-title', this.value, 'Need a POS System')" placeholder="e.g. Need a POS system for my grocery shop" type="text"/>
+</div>
+<!-- Description -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-stack-xs" for="description">Description <span class="text-error">*</span></label>
+<textarea class="w-full p-stack-md bg-surface-container-low border border-surface-variant rounded-DEFAULT focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all font-body-md placeholder:text-outline outline-none resize-y" id="description" oninput="updatePreview('preview-desc', this.value, 'Need a basic inventory and billing POS system.')" placeholder="Describe the task in detail. What are the key deliverables?" rows="4"></textarea>
+</div>
+<!-- Required Department -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-stack-sm">Required Department <span class="text-error">*</span></label>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-stack-sm">
+<label class="relative cursor-pointer">
+<input checked="" class="peer sr-only" name="department" onchange="updateDepartment('ICT')" type="radio" value="ICT"/>
+<div class="h-12 flex items-center justify-center border border-surface-variant rounded-DEFAULT bg-surface-container-low peer-checked:bg-secondary/10 peer-checked:border-secondary peer-checked:text-secondary font-label-md text-on-surface-variant transition-all hover:bg-surface-variant">
+                                ICT
+                            </div>
+</label>
+<label class="relative cursor-pointer">
+<input class="peer sr-only" name="department" onchange="updateDepartment('ET')" type="radio" value="ET"/>
+<div class="h-12 flex items-center justify-center border border-surface-variant rounded-DEFAULT bg-surface-container-low peer-checked:bg-secondary/10 peer-checked:border-secondary peer-checked:text-secondary font-label-md text-on-surface-variant transition-all hover:bg-surface-variant">
+                                ET
+                            </div>
+</label>
+<label class="relative cursor-pointer">
+<input class="peer sr-only" name="department" onchange="updateDepartment('BST')" type="radio" value="BST"/>
+<div class="h-12 flex items-center justify-center border border-surface-variant rounded-DEFAULT bg-surface-container-low peer-checked:bg-secondary/10 peer-checked:border-secondary peer-checked:text-secondary font-label-md text-on-surface-variant transition-all hover:bg-surface-variant">
+                                BST
+                            </div>
+</label>
+<label class="relative cursor-pointer">
+<input class="peer sr-only" name="department" onchange="updateDepartment('Any')" type="radio" value="Any"/>
+<div class="h-12 flex items-center justify-center border border-surface-variant rounded-DEFAULT bg-surface-container-low peer-checked:bg-secondary/10 peer-checked:border-secondary peer-checked:text-secondary font-label-md text-on-surface-variant transition-all hover:bg-surface-variant">
+                                Any
+                            </div>
+</label>
+</div>
+</div>
+<!-- Budget & Location -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-stack-xs" for="budget">Budget <span class="text-error">*</span></label>
+<div class="relative flex items-center">
+<span class="absolute left-stack-md font-body-md text-outline">Rs.</span>
+<input class="w-full h-12 pl-12 pr-stack-md bg-surface-container-low border border-surface-variant rounded-DEFAULT focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all font-body-md outline-none" id="budget" oninput="updatePreview('preview-budget', 'Rs. ' + (this.value ? Number(this.value).toLocaleString() : '8,000'), 'Rs. 8,000')" placeholder="8000" type="number"/>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-stack-xs" for="location">Location</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-stack-md text-outline">location_on</span>
+<input class="w-full h-12 pl-[44px] pr-stack-md bg-surface-container-low border border-surface-variant rounded-DEFAULT focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all font-body-md outline-none placeholder:text-outline" id="location" oninput="updatePreview('preview-location', this.value, 'Galle')" placeholder="e.g. Galle, Remote" type="text"/>
+</div>
+</div>
+</div>
+<!-- Optional Requirements (Chips) -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-stack-xs">Skills &amp; Requirements (Optional)</label>
+<div class="flex flex-wrap gap-stack-xs">
+<!-- Chip Template -->
+<label class="cursor-pointer">
+<input class="peer sr-only" onchange="toggleSkill(this)" type="checkbox" value="Web Development"/>
+<div class="px-4 py-2 rounded-full border border-surface-variant bg-surface-container-low text-on-surface-variant font-label-md peer-checked:bg-secondary-fixed peer-checked:border-secondary peer-checked:text-secondary-fixed-variant transition-colors hover:bg-surface-variant">
+                                Web Development
+                            </div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" onchange="toggleSkill(this)" type="checkbox" value="Database"/>
+<div class="px-4 py-2 rounded-full border border-surface-variant bg-surface-container-low text-on-surface-variant font-label-md peer-checked:bg-secondary-fixed peer-checked:border-secondary peer-checked:text-secondary-fixed-variant transition-colors hover:bg-surface-variant">
+                                Database
+                            </div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" onchange="toggleSkill(this)" type="checkbox" value="Networking"/>
+<div class="px-4 py-2 rounded-full border border-surface-variant bg-surface-container-low text-on-surface-variant font-label-md peer-checked:bg-secondary-fixed peer-checked:border-secondary peer-checked:text-secondary-fixed-variant transition-colors hover:bg-surface-variant">
+                                Networking
+                            </div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" onchange="toggleSkill(this)" type="checkbox" value="Electrical"/>
+<div class="px-4 py-2 rounded-full border border-surface-variant bg-surface-container-low text-on-surface-variant font-label-md peer-checked:bg-secondary-fixed peer-checked:border-secondary peer-checked:text-secondary-fixed-variant transition-colors hover:bg-surface-variant">
+                                Electrical
+                            </div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" onchange="toggleSkill(this)" type="checkbox" value="Design"/>
+<div class="px-4 py-2 rounded-full border border-surface-variant bg-surface-container-low text-on-surface-variant font-label-md peer-checked:bg-secondary-fixed peer-checked:border-secondary peer-checked:text-secondary-fixed-variant transition-colors hover:bg-surface-variant">
+                                Design
+                            </div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" onchange="toggleSkill(this)" type="checkbox" value="Writing"/>
+<div class="px-4 py-2 rounded-full border border-surface-variant bg-surface-container-low text-on-surface-variant font-label-md peer-checked:bg-secondary-fixed peer-checked:border-secondary peer-checked:text-secondary-fixed-variant transition-colors hover:bg-surface-variant">
+                                Writing
+                            </div>
+</label>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Live Preview -->
+<div class="lg:col-span-5 hidden lg:block">
+<div class="preview-sticky">
+<h3 class="font-label-md text-label-md text-outline uppercase tracking-widest mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+                        Live Preview
+                    </h3>
+<!-- Opportunity Card Preview -->
+<div class="bg-surface-container-lowest rounded-lg border border-surface-variant p-stack-lg shadow-[0px_4px_20px_rgba(15,23,42,0.05)] relative overflow-hidden group">
+<!-- Accent Bar -->
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary rounded-l-lg"></div>
+<!-- Card Header -->
+<div class="flex justify-between items-start mb-stack-md">
+<div>
+<div class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed text-[11px] font-bold tracking-wide uppercase mb-2" id="preview-department">
+                                    ICT
+                                </div>
+<h4 class="font-title-lg text-title-lg text-primary font-bold line-clamp-2" id="preview-title">Need a POS System</h4>
+</div>
+<!-- Client Info Mini -->
+<div class="flex flex-col items-end">
+<div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden mb-1">
+<img alt="Sunil Shopkeeper" class="w-full h-full object-cover" data-alt="A small circular avatar placeholder image. Inside is a simple illustration of a friendly local shopkeeper in a clean, modern style, suitable for a professional platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCacB-ijc1Y7ZGUc-M69DA0HjDaZR2Vi3JzXABLpjpgYRbcLNmopCVSEy3zP7neswOcr3iLvcaa17ygxbCzpnreyitw3jW5MeJjyQMIPXmo9CRRDdpyg-7k6c9C9vbtgtOHpjaPrhkhSCkZ4irmgISigRkd9N4ShkHLgw6o5_lhVhUx5sm30QarddXiI0CLeiuCmr86n6z6MXaFM40ZqjNlEBN8bkM4Kii6aYHgecMzL3xqpCcNeY35PQ"/>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary fill">verified</span>
+<span class="text-[10px] font-medium text-on-surface-variant">Verified</span>
+</div>
+</div>
+</div>
+<!-- Description -->
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mb-stack-lg" id="preview-desc">
+                            Need a basic inventory and billing POS system.
+                        </p>
+<!-- Skills Container (Dynamic) -->
+<div class="flex flex-wrap gap-2 mb-stack-lg min-h-[28px]" id="preview-skills">
+<!-- Populated by JS -->
+</div>
+<!-- Divider -->
+<div class="h-px w-full bg-surface-variant mb-stack-md"></div>
+<!-- Footer Details -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-stack-md">
+<div class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-outline">payments</span>
+<span class="font-label-md text-label-md font-bold" id="preview-budget">Rs. 8,000</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px] text-outline">location_on</span>
+<span class="font-body-sm text-body-sm" id="preview-location">Galle</span>
+</div>
+</div>
+<!-- Fake action button for preview -->
+<div class="h-8 px-4 rounded-full border border-surface-variant flex items-center justify-center font-label-md text-on-surface-variant bg-surface-container-low cursor-not-allowed opacity-50">
+                                Apply
+                            </div>
+</div>
+<!-- Client Section details in preview -->
+<div class="mt-stack-lg p-stack-sm bg-surface-container-low rounded-DEFAULT flex items-center gap-stack-sm border border-surface-variant border-dashed">
+<div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden">
+<img alt="Sunil Shopkeeper" class="w-full h-full object-cover" data-alt="A small circular avatar placeholder image. Inside is a simple illustration of a friendly local shopkeeper in a clean, modern style, suitable for a professional platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAosdMnYo-TYaGc3WI91x0hxqZWwYjfBG6okLY23WBX29OICPK6fKBpov3AJWpL0_jLE_wEchB68s06VPnalMjNW9ztRgJkTM1iIW03aA8ge9rcuDfgtjyBsPaXYrYCQHplIHMGaWjAfy-SIrnA4NAnKJ7BrxWyD7CmBL4b_3RMlgdURcsWzanGaz_e3qY7KDvpWbFxd_FpvF-fcP5q8tiLGxYXTE4TNcAqz6QpF7hWaGu8aohSTbtOiw"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-[11px] text-on-surface">Sunil Shopkeeper</span>
+<span class="text-[10px] text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[12px] text-secondary fill">verified</span> Verified Client</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Actions (Sticky on Mobile, Static on Desktop) -->
+<div class="mt-stack-xl pt-stack-lg border-t border-surface-variant flex flex-col-reverse sm:flex-row justify-between items-center gap-stack-md sticky bottom-0 bg-background/90 backdrop-blur-md pb-stack-lg sm:static sm:bg-transparent sm:pb-0 z-40">
+<button class="w-full sm:w-auto px-6 h-12 rounded-lg font-label-md text-on-surface-variant hover:text-on-surface transition-colors">
+                Cancel
+            </button>
+<div class="flex flex-col sm:flex-row w-full sm:w-auto gap-stack-sm">
+<button class="w-full sm:w-auto px-6 h-12 rounded-lg border border-outline font-label-md text-on-surface hover:bg-surface-variant transition-colors shadow-sm">
+                    Save Draft
+                </button>
+<button class="w-full sm:w-auto px-8 h-12 rounded-lg bg-primary-container text-on-primary-container font-label-md opacity-50 cursor-not-allowed transition-all shadow-sm" disabled="" id="post-btn">
+                    Post Opportunity
+                </button>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-surface dark:bg-surface-container-lowest w-full py-stack-lg mt-stack-xl border-t border-surface-variant dark:border-outline-variant flat no shadows">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop max-w-container-max mx-auto gap-gutter">
+<a class="font-headline-sm text-headline-sm font-bold text-on-primary-fixed" href="#">Skill Bridge</a>
+<div class="flex flex-wrap justify-center gap-stack-md font-body-sm text-body-sm">
+<a class="text-on-surface-variant hover:underline hover:text-secondary dark:hover:text-secondary-fixed cursor-pointer transition-all" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:underline hover:text-secondary dark:hover:text-secondary-fixed cursor-pointer transition-all" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:underline hover:text-secondary dark:hover:text-secondary-fixed cursor-pointer transition-all" href="#">Help Center</a>
+<a class="text-on-surface-variant hover:underline hover:text-secondary dark:hover:text-secondary-fixed cursor-pointer transition-all" href="#">Student Guidelines</a>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 Skill Bridge. Empowering the student economy.</p>
+</div>
+</footer>
+<!-- Interactive Scripts -->
+<script>
+        // Simple data binding for preview
+        function updatePreview(id, value, fallback) {
+            const el = document.getElementById(id);
+            if(el) {
+                if(value && value.trim() !== '') {
+                    el.textContent = value;
+                    el.classList.remove('opacity-50');
+                } else {
+                    el.textContent = fallback;
+                    // Optional: visual cue that it's a fallback
+                    if(id !== 'preview-department') {
+                        el.classList.add('opacity-50');
+                    }
+                }
+            }
+            validateForm();
+        }
+
+        function updateDepartment(val) {
+            const el = document.getElementById('preview-department');
+            if(el) el.textContent = val;
+            validateForm();
+        }
+
+        const selectedSkills = new Set();
+        function toggleSkill(checkbox) {
+            const val = checkbox.value;
+            if(checkbox.checked) {
+                selectedSkills.add(val);
+            } else {
+                selectedSkills.delete(val);
+            }
+            renderSkillsPreview();
+        }
+
+        function renderSkillsPreview() {
+            const container = document.getElementById('preview-skills');
+            container.innerHTML = '';
+            selectedSkills.forEach(skill => {
+                const span = document.createElement('span');
+                span.className = 'px-2 py-1 bg-surface-variant text-on-surface-variant rounded text-[10px] font-bold tracking-wide uppercase';
+                span.textContent = skill;
+                container.appendChild(span);
+            });
+        }
+
+        // Basic Validation Logic
+        function validateForm() {
+            const title = document.getElementById('title').value.trim();
+            const desc = document.getElementById('description').value.trim();
+            const budget = document.getElementById('budget').value.trim();
+            const postBtn = document.getElementById('post-btn');
+
+            if(title !== '' && desc !== '' && budget !== '') {
+                // Enable
+                postBtn.disabled = false;
+                postBtn.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-primary-container', 'text-on-primary-container');
+                postBtn.classList.add('bg-secondary', 'text-on-secondary', 'hover:bg-secondary-container', 'hover:shadow-md');
+            } else {
+                // Disable
+                postBtn.disabled = true;
+                postBtn.classList.add('opacity-50', 'cursor-not-allowed', 'bg-primary-container', 'text-on-primary-container');
+                postBtn.classList.remove('bg-secondary', 'text-on-secondary', 'hover:bg-secondary-container', 'hover:shadow-md');
+            }
+        }
+
+        document.getElementById('post-btn').addEventListener('click', async () => {
+            const title = document.getElementById('title').value.trim();
+            const desc = document.getElementById('description').value.trim();
+            const budget = document.getElementById('budget').value.trim();
+            const dept = document.querySelector('input[name="department"]:checked').value;
+            const creator_id = localStorage.getItem('user_id');
+
+            if (!creator_id) {
+                alert('You must be logged in to post a task.');
+                window.location.href = '../auth/login.html';
+                return;
+            }
+
+            try {
+                const res = await fetch('../../../backend/api/tasks_api.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        action: 'create',
+                        creator_id: creator_id,
+                        title: title,
+                        description: desc,
+                        required_dept: dept,
+                        budget: budget
+                    })
+                });
+                const data = await res.json();
+                if (data.status === 'success') {
+                    alert('Task created successfully!');
+                    window.location.href = 'dashboard.html';
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while creating the task.');
+            }
+        });
+    </script>
+</body></html>

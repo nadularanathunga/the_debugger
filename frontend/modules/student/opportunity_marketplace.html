@@ -29,15 +29,11 @@
             const container = document.getElementById('tasks_container');
             
             try {
-                const response = await fetch('../../../backend/api/student/student_api.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ action: 'get_open_tasks' })
-                });
+                const response = await fetch('../../../backend/api/tasks_api.php?action=list&status=open');
                 const data = await response.json();
                 
-                if (data.status === 'success' && data.tasks.length > 0) {
-                    container.innerHTML = data.tasks.map(task => `
+                if (data.status === 'success' && data.data.length > 0) {
+                    container.innerHTML = data.data.map(task => `
                         <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:shadow-lg transition">
                             <div class="flex justify-between items-start mb-4">
                                 <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-1 rounded">Dept: ${task.required_dept}</span>
