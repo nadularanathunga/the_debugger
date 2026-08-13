@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management - Skill Market</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <nav class="bg-blue-600 text-white p-4 shadow-md">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">My Active Tasks</h1>
+            <a href="student_dashboard.html" class="hover:text-blue-200">Dashboard</a>
+        </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto mt-10 p-4">
+        <h2 class="text-2xl font-extrabold text-gray-800 mb-6">Tasks You Are Working On</h2>
+        
+        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-gray-50 text-gray-700 border-b">
+                        <th class="p-4 font-semibold">Task Title</th>
+                        <th class="p-4 font-semibold">Budget</th>
+                        <th class="p-4 font-semibold">Accepted Date</th>
+                        <th class="p-4 font-semibold">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="active_tasks_list" class="divide-y divide-gray-200">
+                    <!-- Tasks will load here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        async function loadMyActiveTasks() {
+            const userId = localStorage.getItem('user_id');
+            const list = document.getElementById('active_tasks_list');
+            
+            try {
+                const response = await fetch('../../../backend/api/student/student_api.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'get_my_active_tasks', student_id: userId })
+                });
+                const data = await response.json();
+                
+                if (data.status === 'success' && data.tasks.length > 0) {
+                    list.innerHTML = data.tasks.map(t => `
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="p-4 font-semibold text-gray-800">${t.title}</td>
+                            <td class="p-4 text-green-600 font-bold">Rs. ${t.budget}</td>
+                            <td class="p-4 text-gray-500 text-sm">${t.taken_at || 'Just now'}</td>
+                            <td class="p-4">
+                                <button onclick="markCompleted(${t.task_id})" class="bg-green-500 text-white px-4 py-2 rounded font-bold hover:bg-green-600 text-sm">Mark as Done</button>
+                            </td>
+                        </tr>
+                    `).join('');
+                } else {
+                    list.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-gray-500">You have no active tasks. Go to the marketplace to find some!</td></tr>`;
+                }
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
+
+        async function markCompleted(taskId) {
+            if(confirm("Are you sure you want to mark this task as completed?")) {
+                // Here you would call an API to update task status to 'completed'
+                alert("Task marked as completed! Pending client verification.");
+                loadMyActiveTasks();
+            }
+        }
+
+        loadMyActiveTasks();
+    </script>
+</body>
+</html>

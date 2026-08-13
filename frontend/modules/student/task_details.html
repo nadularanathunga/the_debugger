@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>POS System Development - Skill Bridge</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#271901",
+                        "primary-container": "#131b2e",
+                        "on-tertiary-fixed-variant": "#574425",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#dec29a",
+                        "primary-fixed": "#dae2fd",
+                        "secondary": "#0058be",
+                        "on-secondary-fixed-variant": "#004395",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#f0edef",
+                        "surface-variant": "#e4e2e4",
+                        "on-secondary-fixed": "#001a42",
+                        "outline": "#76777d",
+                        "surface-container-low": "#f6f3f5",
+                        "surface-bright": "#fcf8fa",
+                        "surface-dim": "#dcd9db",
+                        "surface-tint": "#565e74",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#f3f0f2",
+                        "on-primary-fixed": "#131b2e",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#271901",
+                        "surface-container-high": "#eae7e9",
+                        "inverse-surface": "#303032",
+                        "secondary-container": "#2170e4",
+                        "secondary-fixed": "#d8e2ff",
+                        "tertiary-fixed": "#fcdeb5",
+                        "outline-variant": "#c6c6cd",
+                        "on-primary-container": "#7c839b",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#fcf8fa",
+                        "on-surface": "#1b1b1d",
+                        "on-background": "#1b1b1d",
+                        "surface": "#fcf8fa",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#bec6e0",
+                        "primary": "#000000",
+                        "on-surface-variant": "#45464d",
+                        "on-secondary-container": "#fefcff",
+                        "surface-container-highest": "#e4e2e4",
+                        "on-tertiary-container": "#98805d",
+                        "primary-fixed-dim": "#bec6e0",
+                        "tertiary": "#000000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-xl": "48px",
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "stack-md": "16px",
+                        "stack-xs": "4px",
+                        "margin-desktop": "40px",
+                        "stack-lg": "24px",
+                        "container-max": "1280px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "title-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "title-lg": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-md": ["30px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #fcf8fa; color: #1b1b1d; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .filled-icon { font-variation-settings: 'FILL' 1; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top App Bar -->
+<header class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md fixed top-0 right-0 w-full md:w-[calc(100%-16rem)] z-40 transition-all duration-200 ease-in-out flex justify-between items-center h-16 px-gutter border-b border-outline-variant/30">
+<div class="flex items-center gap-4 md:hidden">
+<button class="text-on-surface-variant hover:bg-surface-container-low rounded-full p-2 transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-headline-sm text-headline-sm font-extrabold text-primary">Skill Bridge</span>
+</div>
+<div class="hidden md:flex items-center flex-1 max-w-xl ml-4">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full h-10 pl-10 pr-4 text-body-sm font-body-sm focus:ring-2 focus:ring-secondary outline-none transition-all placeholder:text-on-surface-variant/70" placeholder="Search opportunities..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-stack-sm">
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant shrink-0 ml-2">
+<img alt="Student Avatar" class="w-full h-full object-cover" data-alt="A clean, professional headshot of a university student looking directly at the camera with a subtle smile. High-key lighting, soft white background, modern corporate tech aesthetic, high resolution." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3C8slUsKJ_f-RdBVePbWGSyxtlLcyrsadqQnK1IFPMPH9D3TgW9mlCDyqLvtpl18FuFcZAvHoaHEMWTJ9nM5XU8Eoveuqy8mJ6ZkM3moyjZbb9cEuMUc1mTn4xyACrk7bka4R-0QX_saoCdzyh0RuO1oK4a98B6_sGkYVpDpmJQeVy5VxQvW6-IdOv2afG5rCSQI21mTrVxfy3hq2w81r7OR7DXx0KsNZ2YCOVvDTWEPJXM4aL5FxkA"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-surface dark:bg-inverse-surface shadow-sm z-50 py-stack-lg px-gutter border-r border-outline-variant/30">
+<div class="mb-stack-lg flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden shrink-0">
+<img alt="Student Profile Picture" class="w-full h-full object-cover" data-alt="A sleek, minimalist vector logo design featuring geometric abstract shapes representing skill connection and bridging, using deep navy and subtle gold accents on a clean white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBagTDJew7AgMK3NAlsOtO5Kybw3NKRJ6eG2SAsyrizVKag9NbNESIcdGqukbv1VshIwxN2SE5gDy2Mu8sqpuLEUtQZ2-ciOd2arfzI47mYEED1IFr6eDrUpcbwCv0cg6yqPRbydkcEKlPrB0P9pGK2ZFvieUGNPwGD1wqaoadz5drdSO2cxVAAuhJwehKRLrgY4wuwnM7DFsI0ya_dAgyy1-iCbfEmwGmLSOaKlcomi1LKyJO300_2tg"/>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed-dim leading-tight">Skill Bridge</div>
+<div class="font-label-md text-label-md text-on-surface-variant">Student Portal</div>
+</div>
+</div>
+<ul class="flex flex-col gap-1 flex-1">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant font-body-md text-body-md hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors scale-98 active:scale-95 transition-transform" href="student_dashboard.html">
+<span class="material-symbols-outlined">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-surface-container-low text-primary dark:text-primary-fixed-dim font-bold border-r-4 border-secondary transition-colors scale-98 active:scale-95 transition-transform" href="opportunity_marketplace.html">
+<span class="material-symbols-outlined filled-icon">work</span>
+                    Opportunities
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant font-body-md text-body-md hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors scale-98 active:scale-95 transition-transform" href="active_project.html">
+<span class="material-symbols-outlined">assignment</span>
+                    My Tasks
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant font-body-md text-body-md hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors scale-98 active:scale-95 transition-transform" href="myskill.html">
+<span class="material-symbols-outlined">psychology</span>
+                    My Skills
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant font-body-md text-body-md hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors scale-98 active:scale-95 transition-transform" href="wallet.html">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+                    Wallet
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant font-body-md text-body-md hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors scale-98 active:scale-95 transition-transform" href="profile.html">
+<span class="material-symbols-outlined">person</span>
+                    Profile
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant font-body-md text-body-md hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors scale-98 active:scale-95 transition-transform" href="wallet.html">
+<span class="material-symbols-outlined">settings</span>
+                    Settings
+                </a>
+</li>
+</ul>
+<div class="mt-auto pt-stack-md border-t border-outline-variant/30">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant font-body-md text-body-md hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors scale-98 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Logout
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="md:ml-64 pt-20 pb-stack-xl px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto min-h-screen">
+<!-- Breadcrumb -->
+<nav class="flex text-body-sm font-body-sm text-on-surface-variant mb-stack-md items-center gap-2">
+<a class="hover:text-primary transition-colors" href="opportunity_marketplace.html">Opportunities</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary font-medium">POS System Development</span>
+</nav>
+<div class="flex flex-col lg:flex-row gap-gutter">
+<!-- Left Column: Details -->
+<div class="flex-1 space-y-stack-xl">
+<!-- Header Section -->
+<section>
+<div class="flex flex-wrap items-center gap-stack-sm mb-stack-xs">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md">ICT</span>
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-md text-label-md">
+<span class="material-symbols-outlined text-[14px] filled-icon">verified</span>
+                            Verified Client
+                        </span>
+</div>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-stack-md">POS System Development</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">Need a basic inventory and billing POS system for our grocery shop.</p>
+</section>
+<!-- Info Grid -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-stack-md bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant/30">
+<div class="flex flex-col gap-1">
+<span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">payments</span>Budget</span>
+<span class="font-title-lg text-title-lg text-primary">Rs. 8,000</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">category</span>Department</span>
+<span class="font-body-md text-body-md text-primary">ICT</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">location_on</span>Location</span>
+<span class="font-body-md text-body-md text-primary">Galle</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">schedule</span>Posted</span>
+<span class="font-body-md text-body-md text-primary">2 hours ago</span>
+</div>
+</section>
+<!-- Requirements Section -->
+<section>
+<h2 class="font-title-lg text-title-lg text-primary mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined">list_alt</span>
+                        Requirements
+                    </h2>
+<ul class="space-y-stack-sm">
+<li class="flex items-start gap-3 p-stack-sm hover:bg-surface-container-lowest rounded-lg transition-colors border border-transparent hover:border-outline-variant/20">
+<span class="material-symbols-outlined text-secondary mt-0.5">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Basic POS functionality</span>
+</li>
+<li class="flex items-start gap-3 p-stack-sm hover:bg-surface-container-lowest rounded-lg transition-colors border border-transparent hover:border-outline-variant/20">
+<span class="material-symbols-outlined text-secondary mt-0.5">inventory_2</span>
+<span class="font-body-md text-body-md text-on-surface">Inventory management</span>
+</li>
+<li class="flex items-start gap-3 p-stack-sm hover:bg-surface-container-lowest rounded-lg transition-colors border border-transparent hover:border-outline-variant/20">
+<span class="material-symbols-outlined text-secondary mt-0.5">receipt_long</span>
+<span class="font-body-md text-body-md text-on-surface">Billing module</span>
+</li>
+<li class="flex items-start gap-3 p-stack-sm hover:bg-surface-container-lowest rounded-lg transition-colors border border-transparent hover:border-outline-variant/20">
+<span class="material-symbols-outlined text-secondary mt-0.5">desktop_windows</span>
+<span class="font-body-md text-body-md text-on-surface">Simple user interface</span>
+</li>
+<li class="flex items-start gap-3 p-stack-sm hover:bg-surface-container-lowest rounded-lg transition-colors border border-transparent hover:border-outline-variant/20">
+<span class="material-symbols-outlined text-secondary mt-0.5">database</span>
+<span class="font-body-md text-body-md text-on-surface">Database integration</span>
+</li>
+</ul>
+</section>
+<!-- About Client Section -->
+<section class="bg-surface-container-lowest p-stack-lg rounded-xl border border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-stack-md">
+<div class="w-16 h-16 rounded-full overflow-hidden shrink-0 border-2 border-surface-container-low">
+<img alt="Sunil Shopkeeper Avatar" class="w-full h-full object-cover" data-alt="A portrait of a friendly, middle-aged Sri Lankan male shopkeeper wearing a neat casual shirt. He is standing in front of a slightly blurred background of a well-organized modern grocery store. Natural lighting, warm tones, high quality photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaQWK_2EQw0tu7wbZpK2HalXnCRVUS_woRDSt0dmijnmUsEWZymughhHWgfhltIuaK73vFvh-HeBffSdVkz-mAcyCBjZg_96l-arrWgy_NpFIijnRdTK3FCNu5rXczzM3N_mAdoZSEQsjLUfbK7-yJmQFdzHH0GD-yIT50IZfkcG-9sgql9VEJU81asIbywHPPA9fCGPhwS70bV9aJfO_m4nsLOz9jUAV_nqgHlQcazrNR-UsaYXmwgQ"/>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<h3 class="font-title-lg text-title-lg text-primary">Sunil Shopkeeper</h3>
+<span class="material-symbols-outlined text-secondary text-[20px] filled-icon" title="Verified Client">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Member since 2026</p>
+</div>
+</div>
+<button class="hidden sm:inline-flex px-4 py-2 border border-outline rounded-lg text-primary font-label-md text-label-md hover:bg-surface-container-low transition-colors">
+                        View Profile
+                    </button>
+</section>
+<button class="w-full sm:hidden px-4 py-2 mt-4 border border-outline rounded-lg text-primary font-label-md text-label-md hover:bg-surface-container-low transition-colors">
+                    View Profile
+                </button>
+</div>
+<!-- Right Sidebar (Sticky) -->
+<aside class="w-full lg:w-80 shrink-0">
+<div class="sticky top-[104px] bg-surface-container-lowest rounded-xl border border-outline-variant/30 p-stack-lg shadow-[0px_4px_20px_rgba(15,23,42,0.05)]">
+<div class="mb-stack-lg">
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-2">Project Budget</p>
+<p class="font-display-lg-mobile text-display-lg-mobile text-primary">Rs. 8,000</p>
+</div>
+<div class="flex flex-col gap-stack-sm mb-stack-md">
+<button class="w-full bg-primary-container text-on-primary-container font-label-md text-label-md py-4 px-6 rounded-lg hover:bg-primary transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">send</span>
+                            Apply for Opportunity
+                        </button>
+<button class="w-full bg-transparent text-primary-container border border-primary-container font-label-md text-label-md py-4 px-6 rounded-lg hover:bg-surface-container-low transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">bookmark_border</span>
+                            Save Opportunity
+                        </button>
+</div>
+<div class="bg-tertiary-fixed/30 p-stack-sm rounded-lg flex gap-3 items-start border border-tertiary-fixed">
+<span class="material-symbols-outlined text-tertiary-container mt-0.5 text-[20px]">info</span>
+<p class="font-body-sm text-body-sm text-tertiary-container leading-snug">
+                            Only accept tasks you can confidently complete within the agreed requirements.
+                        </p>
+</div>
+</div>
+</aside>
+</div>
+</main>
+</body></html>

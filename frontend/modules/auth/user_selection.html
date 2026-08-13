@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Market - Who are you?</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 flex items-center justify-center min-h-screen font-sans p-4">
+    
+    <div class="max-w-4xl w-full text-center">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Welcome to Skill Market</h1>
+        <p class="text-lg text-slate-300 mb-12">Please select your role to continue</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Student Card -->
+            <div onclick="selectRole('student')" class="bg-white rounded-2xl p-8 cursor-pointer transform hover:scale-105 transition duration-300 shadow-xl border-b-4 border-blue-500">
+                <div class="text-5xl mb-4">🎓</div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Student</h3>
+                <p class="text-gray-500 text-sm">Offer your skills, find tasks, and earn money on campus.</p>
+            </div>
+
+            <!-- Client Card -->
+            <div onclick="selectRole('client')" class="bg-white rounded-2xl p-8 cursor-pointer transform hover:scale-105 transition duration-300 shadow-xl border-b-4 border-green-500">
+                <div class="text-5xl mb-4">🤝</div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Local / Client</h3>
+                <p class="text-gray-500 text-sm">Post jobs, hire students, or sell food items to the campus.</p>
+            </div>
+
+            <!-- Lecturer Card -->
+            <div onclick="selectRole('lecturer')" class="bg-white rounded-2xl p-8 cursor-pointer transform hover:scale-105 transition duration-300 shadow-xl border-b-4 border-purple-500">
+                <div class="text-5xl mb-4">👨‍🏫</div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Lecturer</h3>
+                <p class="text-gray-500 text-sm">Find student assistants for research, formatting, or projects.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectRole(role) {
+            // Save initial intention to local storage to pre-fill signup/login
+            localStorage.setItem('selected_role', role);
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>

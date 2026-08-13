@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wallet - Skill Bridge</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error-container": "#93000a",
+                      "on-primary-container": "#7c839b",
+                      "primary-fixed": "#dae2fd",
+                      "tertiary-fixed-dim": "#dec29a",
+                      "on-secondary-container": "#fefcff",
+                      "secondary": "#0058be",
+                      "surface-container-high": "#eae7e9",
+                      "background": "#fcf8fa",
+                      "outline": "#76777d",
+                      "on-surface-variant": "#45464d",
+                      "tertiary-fixed": "#fcdeb5",
+                      "on-error": "#ffffff",
+                      "inverse-on-surface": "#f3f0f2",
+                      "secondary-fixed-dim": "#adc6ff",
+                      "primary-container": "#131b2e",
+                      "surface-container": "#f0edef",
+                      "tertiary-container": "#271901",
+                      "on-secondary-fixed": "#001a42",
+                      "error-container": "#ffdad6",
+                      "secondary-fixed": "#d8e2ff",
+                      "surface-container-highest": "#e4e2e4",
+                      "on-tertiary-fixed-variant": "#574425",
+                      "error": "#ba1a1a",
+                      "surface": "#fcf8fa",
+                      "surface-variant": "#e4e2e4",
+                      "primary-fixed-dim": "#bec6e0",
+                      "surface-container-low": "#f6f3f5",
+                      "surface-tint": "#565e74",
+                      "inverse-surface": "#303032",
+                      "on-background": "#1b1b1d",
+                      "on-tertiary-container": "#98805d",
+                      "on-secondary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "on-surface": "#1b1b1d",
+                      "on-primary-fixed": "#131b2e",
+                      "inverse-primary": "#bec6e0",
+                      "outline-variant": "#c6c6cd",
+                      "surface-bright": "#fcf8fa",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-container": "#2170e4",
+                      "tertiary": "#000000",
+                      "on-primary-fixed-variant": "#3f465c",
+                      "on-tertiary": "#ffffff",
+                      "primary": "#000000",
+                      "surface-dim": "#dcd9db",
+                      "on-tertiary-fixed": "#271901",
+                      "on-secondary-fixed-variant": "#004395"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-md": "16px",
+                      "stack-lg": "24px",
+                      "unit": "8px",
+                      "stack-xs": "4px",
+                      "margin-mobile": "16px",
+                      "margin-desktop": "40px",
+                      "stack-xl": "48px",
+                      "container-max": "1280px",
+                      "gutter": "24px",
+                      "stack-sm": "8px"
+              },
+              "fontFamily": {
+                      "display-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "title-lg": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "display-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "headline-sm": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "title-lg": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "30px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body { background-color: #fcf8fa; color: #1b1b1d; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md h-screen overflow-hidden flex">
+<!-- SideNavBar -->
+<nav class="h-screen w-64 fixed left-0 top-0 bg-surface dark:bg-inverse-surface shadow-sm flex flex-col h-full py-stack-lg px-gutter z-50">
+<div class="mb-stack-xl flex items-center gap-stack-md">
+<img class="w-12 h-12 rounded-full object-cover shadow-sm" data-alt="A minimalist, highly professional profile picture of a young university student against a bright, clean, light-mode background. The lighting is soft and even, highlighting their face perfectly without harsh shadows. The color palette is composed of sophisticated whites, soft grays, and subtle deep navy accents, fitting a premium SaaS aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJUzUxz1W92FnvyoEEqJXSf9wrseaZ7wYxOcDaqidaID5s_Xr9pXkDFjuQP3W38PLPshV5LeMgY_O5dPiAkFtW_kweylTrQWi9jWs-hKgOBpIpzNpIuJtgXhqh3h9Hmqj5FulSlZflB8St_A9aGy9jAAwil7NgnYYrMeQEWobqrTb9bT_m8CCv9Z7Ds49w0ZxP8CpvM33ZS1aq1JcJDyEkrWEYlgtY0gsbNd7gZOi9NeSjvL70VzL4AA"/>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed-dim">Skill Bridge</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">Student Portal</p>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto pr-unit">
+<ul class="space-y-stack-sm">
+<li>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm rounded-lg hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors text-on-surface-variant dark:text-on-secondary-fixed-variant scale-98 active:scale-95 transition-transform" href="student_dashboard.html">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm rounded-lg hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors text-on-surface-variant dark:text-on-secondary-fixed-variant scale-98 active:scale-95 transition-transform" href="opportunity_marketplace.html">
+<span class="material-symbols-outlined" data-icon="work">work</span>
+<span>Opportunities</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm rounded-lg hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors text-on-surface-variant dark:text-on-secondary-fixed-variant scale-98 active:scale-95 transition-transform" href="active_project.html">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span>My Tasks</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm rounded-lg hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors text-on-surface-variant dark:text-on-secondary-fixed-variant scale-98 active:scale-95 transition-transform" href="myskill.html">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span>My Skills</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm rounded-lg text-primary dark:text-primary-fixed-dim font-bold border-r-4 border-secondary hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors scale-98 active:scale-95 transition-transform" href="wallet.html">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet" data-weight="fill" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+<span>Wallet</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm rounded-lg hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors text-on-surface-variant dark:text-on-secondary-fixed-variant scale-98 active:scale-95 transition-transform" href="profile.html">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span>Profile</span>
+</a>
+</li>
+</ul>
+</div>
+<div class="mt-stack-xl">
+<ul class="space-y-stack-sm">
+<li>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm rounded-lg hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors text-on-surface-variant dark:text-on-secondary-fixed-variant scale-98 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm rounded-lg hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors text-on-surface-variant dark:text-on-secondary-fixed-variant scale-98 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Logout</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="ml-64 flex-1 h-screen overflow-y-auto bg-surface-low">
+<!-- TopAppBar Context -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md flex justify-between items-center h-16 px-gutter">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Wallet</h2>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="p-unit rounded-full hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-all duration-200 ease-in-out text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<img class="w-8 h-8 rounded-full object-cover" data-alt="A small, circular profile thumbnail of a professional student for a navigation bar avatar. Soft lighting, high-key background, premium light mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuALRuAPCm5C_iAff-LkdSgsf2hKOytWfPKSvyUtXisWZIu2__wK3E8jz0JsJaBoaL_5J3zngSq060OA-BTNradRRcJ-lH83okch_mrSXFL_CnZ23xu6DZWntXoTX2nOLpj4PE0nuIy5Nm9kA38gZrLlH_teWJ87MkUfRnTUnkt4ksi7Ki0NcBpZ0PSBxZ_K06VsUGj67xE5VzqOxiuke3BhWZiWBBnlZENX-W1-s-sL69u89tBXxuqCYA"/>
+</div>
+</header>
+<div class="pt-24 px-gutter pb-stack-xl max-w-container-max mx-auto space-y-stack-xl">
+<!-- Top Row: Main Balance & Quick Stats -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-stack-lg">
+<!-- Main Balance Card -->
+<div class="col-span-1 lg:col-span-2 bg-on-error rounded-lg border border-outline-variant p-stack-lg flex flex-col justify-between relative overflow-hidden group hover:shadow-lg transition-shadow duration-300">
+<div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: radial-gradient(circle at 100% 0%, #131b2e 0%, transparent 50%);"></div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-stack-sm">Available Balance</p>
+<h3 id="wallet-balance" class="font-display-lg text-display-lg text-primary tracking-tight">Rs. Loading...</h3>
+</div>
+<div class="mt-stack-xl flex items-center justify-between">
+<button class="bg-primary-container text-on-primary-container font-label-md text-label-md py-stack-sm px-stack-lg rounded-full hover:bg-primary-container/90 transition-colors shadow-sm">
+                            View Transactions
+                        </button>
+<div class="flex gap-unit">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<div class="w-2 h-2 rounded-full bg-surface-container-highest"></div>
+<div class="w-2 h-2 rounded-full bg-surface-container-highest"></div>
+</div>
+</div>
+</div>
+<!-- Vertical Stats Stack -->
+<div class="col-span-1 space-y-stack-md">
+<!-- Total Income -->
+<div class="bg-on-error rounded-lg border border-outline-variant p-stack-md flex justify-between items-center hover:shadow-md transition-shadow">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase mb-unit">Total Income</p>
+<p class="font-title-lg text-title-lg text-on-surface">Rs. 35,000</p>
+</div>
+<div class="bg-surface-container-low p-unit rounded-full text-secondary">
+<span class="material-symbols-outlined" data-icon="arrow_upward">arrow_upward</span>
+</div>
+</div>
+<!-- Total Expenses -->
+<div class="bg-on-error rounded-lg border border-outline-variant p-stack-md flex justify-between items-center hover:shadow-md transition-shadow">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase mb-unit">Total Expenses</p>
+<p class="font-title-lg text-title-lg text-on-surface">Rs. 22,500</p>
+</div>
+<div class="bg-surface-container-low p-unit rounded-full text-error">
+<span class="material-symbols-outlined" data-icon="arrow_downward">arrow_downward</span>
+</div>
+</div>
+<!-- This Month -->
+<div class="bg-on-error rounded-lg border border-outline-variant p-stack-md flex justify-between items-center hover:shadow-md transition-shadow">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase mb-unit">This Month</p>
+<p class="font-title-lg text-title-lg text-on-surface flex items-center gap-unit">
+                                + Rs. 8,500
+                                <span class="bg-primary-fixed text-on-primary-fixed text-xs px-2 py-1 rounded-full font-label-md">+24%</span>
+</p>
+</div>
+<div class="bg-primary-fixed/30 p-unit rounded-full text-secondary">
+<span class="material-symbols-outlined" data-icon="trending_up">trending_up</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Earnings Overview Chart Area -->
+<section class="bg-on-error rounded-lg border border-outline-variant p-stack-lg">
+<div class="flex justify-between items-center mb-stack-lg">
+<h4 class="font-title-lg text-title-lg text-on-surface">Earnings Overview</h4>
+<select class="bg-surface-container text-on-surface font-label-md text-label-md rounded-full border-none px-stack-md py-unit focus:ring-2 focus:ring-secondary cursor-pointer">
+<option>Last 6 Months</option>
+<option>This Year</option>
+</select>
+</div>
+<!-- Abstracted Chart Placeholder (Using CSS/SVG pattern for minimalism) -->
+<div class="h-64 w-full relative flex items-end">
+<!-- Y Axis Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+<div class="border-b border-surface-container-highest w-full h-0"></div>
+<div class="border-b border-surface-container-highest w-full h-0"></div>
+<div class="border-b border-surface-container-highest w-full h-0"></div>
+<div class="border-b border-surface-container-highest w-full h-0"></div>
+</div>
+<!-- Simulated Area Chart -->
+<div class="relative w-full h-full flex items-end pb-stack-md">
+<svg class="w-full h-[80%] absolute bottom-stack-md left-0" preserveaspectratio="none" viewbox="0 0 100 100">
+<!-- Area Fill -->
+<path d="M0,100 L0,70 Q25,80 50,40 T100,20 L100,100 Z" fill="url(#chart-gradient)" opacity="0.3"></path>
+<!-- Line -->
+<path d="M0,70 Q25,80 50,40 T100,20" fill="none" stroke="#131b2e" stroke-width="2"></path>
+<defs>
+<lineargradient id="chart-gradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#131b2e" stop-opacity="0.8"></stop>
+<stop offset="100%" stop-color="#131b2e" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+<!-- X Axis Labels -->
+<div class="absolute bottom-0 w-full flex justify-between px-2 font-label-md text-label-md text-on-surface-variant">
+<span>Jan</span>
+<span>Feb</span>
+<span>Mar</span>
+<span>Apr</span>
+<span>May</span>
+<span>Jun</span>
+</div>
+</div>
+</section>
+<!-- Recent Transactions -->
+<section class="bg-on-error rounded-lg border border-outline-variant p-stack-lg">
+<div class="flex justify-between items-center mb-stack-lg">
+<h4 class="font-title-lg text-title-lg text-on-surface">Recent Transactions</h4>
+<button class="text-secondary font-label-md text-label-md hover:underline">View All</button>
+</div>
+<!-- Filters -->
+<div class="flex gap-stack-sm mb-stack-lg">
+<button class="px-stack-md py-unit rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md shadow-sm">All</button>
+<button class="px-stack-md py-unit rounded-full bg-surface-container hover:bg-surface-container-highest text-on-surface font-label-md text-label-md transition-colors">Income</button>
+<button class="px-stack-md py-unit rounded-full bg-surface-container hover:bg-surface-container-highest text-on-surface font-label-md text-label-md transition-colors">Expenses</button>
+</div>
+<!-- Transaction List -->
+<div class="space-y-unit">
+<!-- Item 1 -->
+<div class="flex items-center justify-between p-stack-md rounded-lg hover:bg-surface-container-low transition-colors group cursor-pointer border border-transparent hover:border-outline-variant/30">
+<div class="flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed">
+<span class="material-symbols-outlined" data-icon="code">code</span>
+</div>
+<div>
+<p class="font-title-lg text-title-lg text-on-surface text-[16px]">POS System Development</p>
+<div class="flex gap-unit items-center mt-1">
+<span class="font-label-md text-label-md text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-full text-[10px]">TASK EARNING</span>
+<span class="font-label-md text-label-md text-outline">Today</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<p class="font-title-lg text-title-lg text-secondary">+ Rs. 5,000</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center justify-between p-stack-md rounded-lg hover:bg-surface-container-low transition-colors group cursor-pointer border border-transparent hover:border-outline-variant/30">
+<div class="flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded-full bg-error-container flex items-center justify-center text-on-error-container">
+<span class="material-symbols-outlined" data-icon="restaurant">restaurant</span>
+</div>
+<div>
+<p class="font-title-lg text-title-lg text-on-surface text-[16px]">Chicken Rice</p>
+<div class="flex gap-unit items-center mt-1">
+<span class="font-label-md text-label-md text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-full text-[10px]">FOOD PURCHASE</span>
+<span class="font-label-md text-label-md text-outline">Today</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<p class="font-title-lg text-title-lg text-error">- Rs. 400</p>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center justify-between p-stack-md rounded-lg hover:bg-surface-container-low transition-colors group cursor-pointer border border-transparent hover:border-outline-variant/30">
+<div class="flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed">
+<span class="material-symbols-outlined" data-icon="electrical_services">electrical_services</span>
+</div>
+<div>
+<p class="font-title-lg text-title-lg text-on-surface text-[16px]">Electrical Repair</p>
+<div class="flex gap-unit items-center mt-1">
+<span class="font-label-md text-label-md text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-full text-[10px]">TASK EARNING</span>
+<span class="font-label-md text-label-md text-outline">Yesterday</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<p class="font-title-lg text-title-lg text-secondary">+ Rs. 2,500</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<script>
+    async function loadWallet() {
+        const userId = localStorage.getItem('user_id');
+        if (!userId) {
+            document.getElementById('wallet-balance').innerText = "Rs. 0";
+            return;
+        }
+        
+        try {
+            const res = await fetch(`../../../backend/api/wallet_api.php?user_id=${userId}`);
+            const data = await res.json();
+            
+            if (data.status === 'success') {
+                document.getElementById('wallet-balance').innerText = `Rs. ${data.balance}`;
+            } else {
+                document.getElementById('wallet-balance').innerText = "Rs. 0";
+            }
+        } catch (error) {
+            console.error("Error loading wallet:", error);
+            document.getElementById('wallet-balance').innerText = "Error";
+        }
+    }
+    document.addEventListener('DOMContentLoaded', loadWallet);
+</script>
+</body></html>

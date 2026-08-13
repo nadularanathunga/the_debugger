@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Skills - Skill Market</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <nav class="bg-blue-600 text-white p-4 shadow-md">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">My Skills</h1>
+            <a href="student_dashboard.html" class="hover:text-blue-200">Dashboard</a>
+        </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto mt-10 p-4">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-extrabold text-gray-800">Your Listed Skills</h2>
+            <a href="add_your_skill.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-blue-700">+ Add New Skill</a>
+        </div>
+        
+        <div id="skills_container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Skills loaded here -->
+        </div>
+    </div>
+
+    <script>
+        async function loadMySkills() {
+            const userId = localStorage.getItem('user_id');
+            const container = document.getElementById('skills_container');
+            
+            try {
+                const response = await fetch(`../../../backend/api/skills_api.php?action=list&student_id=${userId}`);
+                const data = await response.json();
+                
+                if (data.status === 'success' && data.data.length > 0) {
+                    container.innerHTML = data.data.map(skill => `
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                            <span class="bg-purple-100 text-purple-800 text-xs font-bold px-2 py-1 rounded">${skill.category}</span>
+                            <h3 class="text-xl font-bold text-gray-800 mt-3">${skill.skill_name}</h3>
+                            <p class="text-gray-600 text-sm mt-2">${skill.description}</p>
+                            <p class="text-green-600 font-bold mt-4">Rs. ${skill.price}</p>
+                        </div>
+                    `).join('');
+                } else {
+                    container.innerHTML = `<p class="text-gray-500">You haven't listed any skills yet.</p>`;
+                }
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
+        loadMySkills();
+    </script>
+</body>
+</html>

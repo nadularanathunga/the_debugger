@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Skill Bridge - Opportunities</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "error": "#ba1a1a",
+                        "surface-container": "#f0edef",
+                        "on-tertiary-fixed": "#271901",
+                        "outline": "#76777d",
+                        "background": "#fcf8fa",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#bec6e0",
+                        "on-secondary-fixed-variant": "#004395",
+                        "tertiary": "#000000",
+                        "primary-fixed-dim": "#bec6e0",
+                        "on-error": "#ffffff",
+                        "primary": "#000000",
+                        "secondary-fixed": "#d8e2ff",
+                        "surface-variant": "#e4e2e4",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#fefcff",
+                        "secondary": "#0058be",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#f3f0f2",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "primary-container": "#131b2e",
+                        "tertiary-fixed-dim": "#dec29a",
+                        "on-tertiary-container": "#98805d",
+                        "on-primary-fixed": "#131b2e",
+                        "on-secondary-fixed": "#001a42",
+                        "surface-container-low": "#f6f3f5",
+                        "primary-fixed": "#dae2fd",
+                        "tertiary-container": "#271901",
+                        "secondary-container": "#2170e4",
+                        "on-primary-container": "#7c839b",
+                        "surface-container-highest": "#e4e2e4",
+                        "surface-bright": "#fcf8fa",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#1b1b1d",
+                        "outline-variant": "#c6c6cd",
+                        "surface-dim": "#dcd9db",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#45464d",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "on-background": "#1b1b1d",
+                        "surface-tint": "#565e74",
+                        "surface": "#fcf8fa",
+                        "inverse-surface": "#303032",
+                        "surface-container-high": "#eae7e9",
+                        "on-tertiary-fixed-variant": "#574425",
+                        "tertiary-fixed": "#fcdeb5"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "stack-sm": "8px",
+                        "container-max": "1280px",
+                        "stack-lg": "24px",
+                        "stack-md": "16px",
+                        "unit": "8px",
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "stack-xl": "48px",
+                        "margin-mobile": "16px",
+                        "stack-xs": "4px"
+                    },
+                    fontFamily: {
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "headline-sm": ["Plus Jakarta Sans"]
+                    },
+                    fontSize: {
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-md": ["30px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "title-lg": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.background'); color: theme('colors.on-background'); font-family: 'Inter', sans-serif; }
+        .font-headline { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="flex min-h-screen">
+<!-- SideNavBar (from JSON) -->
+<nav class="bg-surface dark:bg-inverse-surface h-screen w-64 fixed left-0 top-0 shadow-sm hidden md:flex flex-col py-stack-lg px-gutter z-50">
+<div class="mb-stack-xl flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary font-headline-sm text-headline-sm font-bold">
+                SB
+            </div>
+<div>
+<div class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed-dim">Skill Bridge</div>
+<div class="font-label-md text-label-md text-on-surface-variant">Student Portal</div>
+</div>
+</div>
+<div class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors scale-98 active:scale-95 transition-transform font-body-md text-body-md" href="student_dashboard.html">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-primary dark:text-primary-fixed-dim font-bold border-r-4 border-secondary bg-surface-container-low scale-98 active:scale-95 transition-transform font-body-md text-body-md" href="opportunity_marketplace.html">
+<span class="material-symbols-outlined" data-icon="work" style="font-variation-settings: 'FILL' 1;">work</span>
+                Opportunities
+            </a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors scale-98 active:scale-95 transition-transform font-body-md text-body-md" href="active_project.html">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+                My Tasks
+            </a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors scale-98 active:scale-95 transition-transform font-body-md text-body-md" href="myskill.html">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+                My Skills
+            </a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors scale-98 active:scale-95 transition-transform font-body-md text-body-md" href="wallet.html">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+                Wallet
+            </a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors scale-98 active:scale-95 transition-transform font-body-md text-body-md" href="profile.html">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+                Profile
+            </a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors scale-98 active:scale-95 transition-transform font-body-md text-body-md" href="wallet.html">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+</div>
+<div class="mt-auto pt-4 border-t border-surface-variant">
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors scale-98 active:scale-95 transition-transform font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Logout
+            </a>
+</div>
+</nav>
+<!-- TopAppBar (from JSON) -->
+<header class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md fixed top-0 right-0 w-full md:w-[calc(100%-16rem)] z-40 transition-all duration-200 ease-in-out flex justify-between items-center h-16 px-gutter border-b md:border-none border-surface-variant">
+<div class="flex items-center md:hidden gap-3">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary font-headline-sm text-sm font-bold">
+                SB
+            </div>
+<span class="font-headline-sm text-headline-sm font-extrabold text-primary dark:text-primary-fixed-dim">Skill Bridge</span>
+</div>
+<div class="hidden md:flex flex-1 max-w-xl relative">
+<!-- Top bar search intent handled in main canvas for this layout -->
+</div>
+<div class="flex items-center gap-4 ml-auto">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest rounded-full transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-surface-variant cursor-pointer">
+<img alt="Student Avatar" class="w-full h-full object-cover" data-alt="A clean, professional headshot of a young university student against a neutral studio background. The lighting is soft and flattering, typical of a modern corporate or academic profile picture. The student looks approachable and confident." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9DF4bvtpCqj3zFpoPYAzbUaDNZ2r2hRs0TIZp1WDVvGPWxa6hntCvsrSGQsUyA9FOukkewUgyux5gEQQy5-8UmiaASeV1ZqMP_Wk2KugatMEhgjVnHsnHgS_3fnA_ln4IhctInddbD4OjZ1GtabsnjMifUqa7332L55Z5HLM0reSWYODpZMFRU5f_7yBjH6IBVKG3kNzdWMKXWc7YHmcCSxgDg82FEv42VtoqtlOP6FZQe8-eUTj5mQ"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 pt-20 px-margin-mobile md:px-margin-desktop pb-stack-xl max-w-container-max mx-auto w-full">
+<!-- Header Section -->
+<section class="mb-stack-lg">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-stack-sm">Find your next opportunity.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Discover tasks that match your skills. Connect with clients and build your portfolio.</p>
+</section>
+<!-- Search & Filter Bar -->
+<section class="mb-stack-xl bg-surface rounded-lg p-stack-sm border border-surface-variant shadow-sm flex flex-col lg:flex-row gap-4 items-center">
+<div class="flex-1 w-full relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full h-12 pl-12 pr-4 bg-surface-container-low border-none rounded-DEFAULT font-body-md text-body-md focus:ring-2 focus:ring-secondary focus:bg-surface transition-all" placeholder="Search tasks, skills or keywords..." type="text"/>
+</div>
+<div class="flex w-full lg:w-auto gap-2 overflow-x-auto hide-scrollbar pb-1 lg:pb-0">
+<button class="flex items-center gap-2 px-4 h-12 bg-surface-container-low rounded-DEFAULT border border-surface-variant font-label-md text-label-md text-on-surface hover:bg-surface-container transition-colors whitespace-nowrap">
+<span class="material-symbols-outlined text-sm" data-icon="category">category</span>
+                    Category
+                </button>
+<button class="flex items-center gap-2 px-4 h-12 bg-surface-container-low rounded-DEFAULT border border-surface-variant font-label-md text-label-md text-on-surface hover:bg-surface-container transition-colors whitespace-nowrap">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+                    Location
+                </button>
+<button class="flex items-center gap-2 px-4 h-12 bg-surface-container-low rounded-DEFAULT border border-surface-variant font-label-md text-label-md text-on-surface hover:bg-surface-container transition-colors whitespace-nowrap">
+<span class="material-symbols-outlined text-sm" data-icon="payments">payments</span>
+                    Budget
+                </button>
+<div class="h-12 w-px bg-surface-variant mx-2 hidden lg:block"></div>
+<button class="flex items-center gap-2 px-4 h-12 bg-primary text-on-primary rounded-DEFAULT font-label-md text-label-md hover:bg-primary/90 transition-colors whitespace-nowrap">
+<span class="material-symbols-outlined text-sm" data-icon="tune">tune</span>
+                    More Filters
+                </button>
+</div>
+</section>
+<div class="flex justify-between items-center mb-stack-md">
+<h2 class="font-title-lg text-title-lg text-on-surface">24 Opportunities</h2>
+<div class="flex items-center gap-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant hidden md:inline">Sort by:</span>
+<select class="h-10 bg-surface border border-surface-variant rounded-DEFAULT font-body-sm text-body-sm focus:ring-2 focus:ring-secondary pl-3 pr-8 appearance-none cursor-pointer">
+<option>Recommended</option>
+<option>Newest</option>
+<option>Highest Budget</option>
+<option>Closest</option>
+</select>
+</div>
+</div>
+<!-- Opportunities Grid -->
+<div id="tasks-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-stack-xl">
+<!-- Card 1 (Normal) -->
+<div class="bg-surface rounded-lg border border-surface-variant p-6 flex flex-col hover:shadow-lg transition-shadow duration-300 group cursor-pointer h-full">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 bg-secondary-fixed text-on-secondary-fixed rounded-full font-label-md text-label-md">ICT</span>
+<button class="text-on-surface-variant hover:text-secondary transition-colors">
+<span class="material-symbols-outlined" data-icon="bookmark_border">bookmark_border</span>
+</button>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-2 group-hover:text-secondary transition-colors">Need POS System for Grocery Shop</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4 flex-1">Need a basic inventory and billing POS system for a small local grocery store. Must handle daily sales tracking and low stock alerts.</p>
+<div class="grid grid-cols-2 gap-y-3 mb-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="payments">payments</span>
+<span class="font-label-md text-label-md text-on-surface">Rs. 8,000</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="location_on">location_on</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Galle</span>
+</div>
+<div class="flex items-center gap-2 col-span-2">
+<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="schedule">schedule</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Posted 2h ago</span>
+</div>
+</div>
+<div class="flex justify-between items-center pt-4 border-t border-surface-variant mt-auto">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-variant">
+<img class="w-full h-full object-cover" data-alt="A clear, professional headshot of an older Sri Lankan male shopkeeper. He has a warm smile, wearing a simple collared shirt, positioned against a slightly blurred background of a well-lit retail store interior. Modern, clean aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGDjrv5sKJNe7i7I33xaez_Ww7-Ca4z4OywVVM78Lfh5IiYwcJjFQ5iKvL-7eUhSbEvok1p9gvE6NztDVHhRkphQyDPv8h-KLhRa6FgzcUfvjhEcXdFTOUwAbCXh4uTuEe7OscAR_eyfzjOEAFTlYGlyxpNj5d5NLCaGXeUhbzOCbOG4mkwq64lCcMfraEFCCHCbLnrMUl_faHkrLYiDURPHIsMrpZh5ByTO-4qVkc1yro0VCsfcT65A"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface flex items-center gap-1">
+                                Sunil Shopkeeper
+                                <span class="material-symbols-outlined text-[14px] text-secondary" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</span>
+</div>
+</div>
+<button class="font-label-md text-label-md text-secondary group-hover:underline">View Details</button>
+</div>
+</div>
+<!-- Card 2 (Hover State Example) -->
+<div class="bg-surface rounded-lg border-2 border-secondary shadow-[0_4px_20px_rgba(15,23,42,0.05)] p-6 flex flex-col transition-all duration-300 relative overflow-hidden cursor-pointer h-full">
+<!-- Subtle Pro Gradient Accent -->
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-secondary to-primary-fixed"></div>
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed rounded-full font-label-md text-label-md">DESIGN</span>
+<button class="text-secondary transition-colors">
+<span class="material-symbols-outlined" data-icon="bookmark" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+</button>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-2 text-secondary">Logo &amp; Branding for Cafe</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4 flex-1">Looking for a creative design student to create a modern, minimalist logo and menu layout for a new coffee shop opening downtown.</p>
+<div class="grid grid-cols-2 gap-y-3 mb-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="payments">payments</span>
+<span class="font-label-md text-label-md text-on-surface">Rs. 12,500</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="location_on">location_on</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Colombo (Remote)</span>
+</div>
+<div class="flex items-center gap-2 col-span-2">
+<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="schedule">schedule</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Posted 5h ago</span>
+</div>
+</div>
+<div class="flex justify-between items-center pt-4 border-t border-surface-variant mt-auto">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-variant">
+<div class="w-full h-full flex items-center justify-center bg-primary-container text-on-primary-container font-label-md">CM</div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface flex items-center gap-1">
+                                Cafe Mocha
+                                <span class="material-symbols-outlined text-[14px] text-secondary" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</span>
+</div>
+</div>
+<button class="h-8 px-4 bg-primary text-on-primary rounded-full font-label-md text-label-md hover:bg-primary/90 transition-colors">Apply Now</button>
+</div>
+</div>
+<!-- Card 3 (Normal) -->
+<div class="bg-surface rounded-lg border border-surface-variant p-6 flex flex-col hover:shadow-lg transition-shadow duration-300 group cursor-pointer h-full">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 bg-error-container text-on-error-container rounded-full font-label-md text-label-md">TUTORING</span>
+<button class="text-on-surface-variant hover:text-secondary transition-colors">
+<span class="material-symbols-outlined" data-icon="bookmark_border">bookmark_border</span>
+</button>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-2 group-hover:text-secondary transition-colors">O/L Mathematics Tutor Needed</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4 flex-1">Require an undergraduate to tutor an O/L student in Mathematics. 2 hours per week, preferably on weekends.</p>
+<div class="grid grid-cols-2 gap-y-3 mb-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="payments">payments</span>
+<span class="font-label-md text-label-md text-on-surface">Rs. 1,500/hr</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="location_on">location_on</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Kandy</span>
+</div>
+<div class="flex items-center gap-2 col-span-2">
+<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="schedule">schedule</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Posted 1d ago</span>
+</div>
+</div>
+<div class="flex justify-between items-center pt-4 border-t border-surface-variant mt-auto">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-variant">
+<img class="w-full h-full object-cover" data-alt="A soft, professional portrait of a Sri Lankan mother looking concerned but hopeful. She is wearing modest, neat clothing. The background is a gently out-of-focus domestic living room setting with warm, inviting light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0u_MIV1SjD0TZMqNLKxwZn-z-RZiT1YpG1_n27Q3k180jP_nop-ERPY4EU3vBCBftKaOz5GLIEjJplqhmhY7YLAY3UDB1DisjazGmIyxJYfhiTEx2peEFHTGMSL3SRAihhp1BmZa9bvv7gzfpLthVAP1kh4dHChTiTz_zModenlcIsQbufExgxPzgzhMMcAjwiwRNI3vaPAf9IBZqcfP0q5W54kdhtnQDB3Z0OZDJoGSNhGw2GBnIHQ"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface flex items-center gap-1">
+                                Mrs. Perera
+                            </span>
+</div>
+</div>
+<button class="font-label-md text-label-md text-secondary group-hover:underline">View Details</button>
+</div>
+</div>
+<!-- Loading Skeleton Example (Hidden by default, shown for demonstration) -->
+<div class="bg-surface rounded-lg border border-surface-variant p-6 flex flex-col h-full animate-pulse opacity-50">
+<div class="flex justify-between items-start mb-4">
+<div class="w-16 h-6 bg-surface-variant rounded-full"></div>
+<div class="w-6 h-6 bg-surface-variant rounded-full"></div>
+</div>
+<div class="w-3/4 h-6 bg-surface-variant rounded mb-3"></div>
+<div class="w-full h-4 bg-surface-variant rounded mb-2"></div>
+<div class="w-5/6 h-4 bg-surface-variant rounded mb-4 flex-1"></div>
+<div class="grid grid-cols-2 gap-y-3 mb-6">
+<div class="w-20 h-4 bg-surface-variant rounded"></div>
+<div class="w-24 h-4 bg-surface-variant rounded"></div>
+<div class="w-32 h-4 bg-surface-variant rounded col-span-2"></div>
+</div>
+<div class="flex justify-between items-center pt-4 border-t border-surface-variant mt-auto">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant"></div>
+<div class="w-24 h-4 bg-surface-variant rounded"></div>
+</div>
+<div class="w-20 h-4 bg-surface-variant rounded"></div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="flex justify-center items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-surface-variant text-on-surface-variant hover:bg-surface-container transition-colors disabled:opacity-50">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-on-primary font-label-md text-label-md">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-surface-variant text-on-surface hover:bg-surface-container transition-colors font-label-md text-label-md">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-surface-variant text-on-surface hover:bg-surface-container transition-colors font-label-md text-label-md">3</button>
+<span class="text-on-surface-variant px-2">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-surface-variant text-on-surface hover:bg-surface-container transition-colors font-label-md text-label-md">8</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-surface-variant text-on-surface-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<script>
+    async function fetchOpenTasks() {
+        try {
+            const res = await fetch('../../../backend/api/tasks_api.php?action=list&status=open');
+            const data = await res.json();
+            
+            if (data.status === 'success') {
+                const container = document.getElementById('tasks-container');
+                container.innerHTML = '';
+                
+                data.data.forEach(task => {
+                    const html = `
+                    <div class="bg-surface rounded-lg border border-surface-variant p-6 flex flex-col hover:shadow-lg transition-shadow duration-300 group h-full relative overflow-hidden">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 bg-secondary-fixed text-on-secondary-fixed rounded-full font-label-md text-label-md">${task.required_dept}</span>
+                        </div>
+                        <h3 class="font-title-lg text-title-lg text-on-surface mb-2 group-hover:text-secondary transition-colors">${task.title}</h3>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4 flex-1">${task.description}</p>
+                        <div class="grid grid-cols-2 gap-y-3 mb-6">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="payments">payments</span>
+                                <span class="font-label-md text-label-md text-on-surface">Rs. ${task.budget}</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center pt-4 border-t border-surface-variant mt-auto">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full overflow-hidden bg-surface-variant flex items-center justify-center font-bold text-on-surface-variant">
+                                    ${task.creator_name ? task.creator_name.charAt(0) : 'C'}
+                                </div>
+                                <div class="flex flex-col">
+                                    <span class="font-label-md text-label-md text-on-surface flex items-center gap-1">
+                                        ${task.creator_name}
+                                    </span>
+                                </div>
+                            </div>
+                            <button onclick="acceptTask(${task.task_id})" class="font-label-md text-label-md text-secondary group-hover:underline">Accept Task</button>
+                        </div>
+                    </div>`;
+                    container.insertAdjacentHTML('beforeend', html);
+                });
+            }
+        } catch (error) {
+            console.error('Error fetching tasks:', error);
+        }
+    }
+
+    async function acceptTask(taskId) {
+        const student_id = localStorage.getItem('user_id');
+        if (!student_id) {
+            alert("Please log in first.");
+            return;
+        }
+
+        if (confirm("Are you sure you want to accept this task?")) {
+            try {
+                const res = await fetch('../../../backend/api/tasks_api.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'accept', task_id: taskId, student_id: student_id })
+                });
+                const data = await res.json();
+                if (data.status === 'success') {
+                    alert('Task accepted successfully!');
+                    fetchOpenTasks(); // Refresh list
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', fetchOpenTasks);
+</script>
+</body></html>
